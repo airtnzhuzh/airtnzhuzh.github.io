@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zhihan Zhu - Academic Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Academic homepage of Zhihan Zhu, Southern University of Science and Technology."
+  />
+  <!-- Optional: Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --bg-card: #ffffff;
+      --primary: #2563eb;
+      --primary-soft: #dbeafe;
+      --text-main: #111827;
+      --text-sub: #4b5563;
+      --border: #e5e7eb;
+      --radius-lg: 18px;
+      --radius-full: 999px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top left, #eef2ff, #f9fafb 55%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 32px auto 40px;
+      padding: 0 16px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
+      padding: 24px 24px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      backdrop-filter: blur(12px);
+    }
+
+    .avatar-wrapper {
+      flex: 0 0 140px;
+      height: 140px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px dashed var(--border);
+      background: repeating-linear-gradient(
+        45deg,
+        #f9fafb,
+        #f9fafb 6px,
+        #eef2ff 6px,
+        #eef2ff 12px
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none; /* 当你添加照片时，把这个设置为 block，并删除占位文字 */
+    }
+
+    .hero-main {
+      flex: 1 1 260px;
+      min-width: 0;
+    }
+
+    .name {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .name-zh {
+      font-size: 18px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 15px;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+    }
+
+    .meta {
+      font-size: 14px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+
+    .meta span {
+      display: inline-block;
+      margin-right: 16px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      font-size: 13px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      background: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip strong {
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .chip span {
+      color: var(--text-sub);
+    }
+
+    .layout {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.2fr);
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    }
+
+    .card h2 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 4px 9px;
+      margin-left: 8px;
+      font-weight: 500;
+    }
+
+    .edu-item,
+    .exp-item,
+    .proj-item,
+    .award-item,
+    .skill-group {
+      margin-bottom: 10px;
+    }
+
+    .edu-title,
+    .item-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .edu-meta,
+    .item-meta {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .edu-detail {
+      font-size: 13px;
+      margin-top: 4px;
+      color: var(--text-sub);
+    }
+
+    ul.clean {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 6px;
+    }
+
+    ul.clean li {
+      position: relative;
+      padding-left: 14px;
+      font-size: 13px;
+      margin-bottom: 3px;
+      color: var(--text-sub);
+    }
+
+    ul.clean li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      color: var(--primary);
+      font-size: 14px;
+      top: 0;
+    }
+
+    /* Publications */
+    .paper {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .paper:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .paper-thumb {
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+      background: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      text-align: center;
+      color: var(--text-sub);
+      padding: 6px;
+      min-height: 80px;
+      overflow: hidden;
+    }
+
+    .paper-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none; /* 添加论文图片时，将这里改为 block 并移除占位文字 */
+    }
+
+    .paper-main {
+      min-width: 0;
+    }
+
+    .paper-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .paper-authors {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 3px;
+    }
+
+    .paper-meta {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 4px;
+    }
+
+    .paper-links {
+      font-size: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .paper-summary {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 20px 18px 16px;
+      }
+
+      .avatar-wrapper {
+        flex: 0 0 110px;
+        height: 110px;
+      }
+
+      .paper {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    aside {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-top: 20px;
+      padding-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="avatar-wrapper">
+        <!--
+          🧑‍🎓 个人照片占位：
+          - 把下面的说明文字删除
+          - 把上面的 img display 从 none 改成 block，并设置 src 为你的照片路径
+          例如：<img src="images/zhihan.jpg" alt="Zhihan Zhu" />
+        -->
+        Profile photo placeholder<br />
+        (Replace with your own<br />portrait image)
+        <!-- <img src="images/zhihan.jpg" alt="Zhihan Zhu" /> -->
+      </div>
+
+      <div class="hero-main">
+        <div class="name">Zhihan Zhu</div>
+        <div class="name-zh">朱旨函</div>
+        <div class="tagline">
+          Undergraduate Student, Department of Electronic and Electrical Engineering<br />
+          Southern University of Science and Technology (SUSTech)
+        </div>
+        <div class="meta">
+          <span>Shenzhen, P.R. China</span>
+          <span>Email: <a href="mailto:12312326@mail.sustech.edu.cn">12312326@mail.sustech.edu.cn</a></span>
+        </div>
+        <div class="links">
+          <div class="chip">
+            <strong>Google Scholar</strong>
+            <span><a href="#" target="_blank" rel="noopener">Add your link here</a></span>
+          </div>
+          <div class="chip">
+            <strong>GitHub</strong>
+            <span><a href="https://github.com/airtnzhuzh" target="_blank" rel="noopener">github.com/airtnzhuzh</a></span>
+          </div>
+          <div class="chip">
+            <strong>WeChat</strong>
+            <span>optional</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <main>
+        <!-- About -->
+        <section class="card">
+          <h2>About / 简介</h2>
+          <p style="font-size: 14px; color: var(--text-sub); margin-top: 2px;">
+            I am a B.S. student in Electronic and Electrical Engineering at Southern University of Science and
+            Technology (SUSTech), Shenzhen. My current research interests include diffusion models, rectified
+            flow-based generative modeling, image inversion & editing, and ultra-low bitrate visual communication.
+            I enjoy building end-to-end systems, from theoretical ideas to large-scale GPU training, and am
+            actively looking for research opportunities and collaborations.
+          </p>
+        </section>
+
+        <!-- Education -->
+        <section class="card">
+          <h2>Education <span class="pill">B.S. Student</span></h2>
+          <div class="edu-item">
+            <div class="edu-title">
+              Southern University of Science and Technology (SUSTech), Shenzhen, China
+            </div>
+            <div class="edu-meta">
+              B.S. in Electronic and Electrical Engineering &middot; Sept 2023 – Present
+              (Expected June 2027)
+            </div>
+            <div class="edu-detail">
+              Weighted Average Score: 91.63 &nbsp;&middot;&nbsp; GPA: 3.85/4.0 &nbsp;&middot;&nbsp;
+              Ranking: 10 / 46<br />
+              Selected coursework: Linear Algebra, Probability and Statistics, Engineering Mathematics, AI and
+              Machine Learning.
+            </div>
+          </div>
+        </section>
+
+        <!-- Publications -->
+        <section class="card">
+          <h2>Publications / 论文</h2>
+          <div class="section-subtitle">
+            (Each paper has a reserved thumbnail area for you to place a representative figure.)
+          </div>
+
+          <!-- Paper 1 -->
+          <article class="paper">
+            <div class="paper-thumb">
+              <!--
+                论文配图占位：
+                - 删除占位文字
+                - 把 img 的 display 改成 block，并设置 src 为你的图片路径
+                例如：<img src="images/paper-runge-kutta.png" alt="Runge-Kutta RF Inversion Figure" />
+              -->
+              Paper image placeholder<br />
+              (Add a representative<br />figure for this paper)
+              <!-- <img src="images/paper-runge-kutta.png" alt="Runge-Kutta RF Inversion Figure" /> -->
+            </div>
+            <div class="paper-main">
+              <div class="paper-title">
+                Runge-Kutta Approximation and Decoupled Attention for Rectified Flow Inversion and Semantic Editing
+              </div>
+              <div class="paper-authors">
+                Weiming Chen, <strong>Zhihan Zhu</strong>, Yijia Wang, Zhihai He
+              </div>
+              <div class="paper-meta">
+                arXiv:2509.12888 [cs.CV], 2025 &middot; September 2025
+              </div>
+              <div class="paper-links">
+                <a href="https://doi.org/10.48550/arXiv.2509.12888" target="_blank" rel="noopener">DOI</a>
+                <a href="https://arxiv.org/abs/2509.12888" target="_blank" rel="noopener">arXiv</a>
+                <!-- <a href="#" target="_blank" rel="noopener">Code</a> -->
+              </div>
+              <div class="paper-summary">
+                We propose a high-order inversion method for rectified flow models using a Runge–Kutta solver, and
+                introduce Decoupled Diffusion Transformer Attention (DDTA) to disentangle multimodal attention for
+                more precise semantic control. Our approach achieves state-of-the-art fidelity and editability in
+                image inversion and editing tasks.
+              </div>
+            </div>
+          </article>
+
+          <!-- Paper 2 -->
+          <article class="paper">
+            <div class="paper-thumb">
+              <!-- 同上，替换为该论文代表性图片 -->
+              Paper image placeholder<br />
+              (Add a representative<br />figure for this paper)
+              <!-- <img src="images/paper-semantic-coding.png" alt="Generative Semantic Coding Figure" /> -->
+            </div>
+            <div class="paper-main">
+              <div class="paper-title">
+                Generative Semantic Coding for Ultra-Low Bitrate Visual Communication and Analysis
+              </div>
+              <div class="paper-authors">
+                Weiming Chen, Yijia Wang, <strong>Zhihan Zhu</strong>, Zhihai He
+              </div>
+              <div class="paper-meta">
+                arXiv:2510.27324 [cs.CV], 2025 &middot; October 2025
+              </div>
+              <div class="paper-links">
+                <a href="https://doi.org/10.48550/arXiv.2510.27324" target="_blank" rel="noopener">DOI</a>
+                <a href="https://arxiv.org/abs/2510.27324" target="_blank" rel="noopener">arXiv</a>
+              </div>
+              <div class="paper-summary">
+                We develop a generative semantic coding framework that integrates image generation with deep
+                compression via rectified flow models, enabling ultra-low bitrate visual communication while
+                maintaining high reconstruction quality and analysis accuracy for remote vision and interaction
+                systems.
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- Patents -->
+        <section class="card">
+          <h2>Patents / 专利</h2>
+          <ul class="clean">
+            <li>
+              Zhihai He, Weiming Chen, <strong>Zhihan Zhu</strong>, Yijia Wang, Jian Ouyang,
+              <em>Image Editing Method Based on Attention Decoupling, Device, Terminal and Storage Medium</em>.
+              CN 202511281645.1, accepted by CNIPA.
+            </li>
+            <li>
+              Zhihai He, Weiming Chen, Yijia Wang, <strong>Zhihan Zhu</strong>,
+              <em>Template-Replacement Image Compression &amp; Reconstruction Method, System and Storage Medium</em>.
+              CN 202511281423.X, accepted by CNIPA.
+            </li>
+          </ul>
+        </section>
+
+        <!-- Research Experience -->
+        <section class="card">
+          <h2>Research Experience / 科研经历</h2>
+
+          <div class="exp-item">
+            <div class="item-title">Diffusion Inversion &amp; Image Editing</div>
+            <div class="item-meta">Sept 2024 – May 2025</div>
+            <ul class="clean">
+              <li>
+                Studied inversion techniques for UNet-based and flow-based diffusion models; proposed a higher-order
+                inversion approach inspired by the Runge–Kutta method.
+              </li>
+              <li>
+                Reimplemented and benchmarked 10+ diffusion inversion and image editing methods on PIE bench and DCI
+                datasets, analyzing key challenges in diffusion-based image editing.
+              </li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="item-title">Diffusion Transformer (DiT) &amp; Flow-based Models</div>
+            <div class="item-meta">Oct 2024 – Present</div>
+            <ul class="clean">
+              <li>Reproduced the DiT architecture from scratch and studied its internal design in depth.</li>
+              <li>
+                Built attention-level editing controls on top of FLUX by implementing hook functions to manipulate
+                attention maps for fine-grained image editing.
+              </li>
+            </ul>
+          </div>
+
+          <div class="exp-item">
+            <div class="item-title">One-step Diffusion for Super-Resolution</div>
+            <div class="item-meta">May 2025 – Present</div>
+            <ul class="clean">
+              <li>
+                Reimplemented MeanFlow and developed auxiliary plug-in super-resolution modules; independently wrote
+                and trained the full pipeline on HPC with 8×A100 GPUs.
+              </li>
+              <li>
+                Designed plug-in SR modules (MeanFlow and SDXL-Turbo based) for one-step super-resolution conditioned
+                on reference images via hook-based integration.
+              </li>
+              <li>
+                Constructed a custom SR dataset derived from DIV2K and Flickr2K for training and reference retrieval.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="card">
+          <h2>Projects / 项目</h2>
+
+          <div class="proj-item">
+            <div class="item-title">One-step Diffusion for Image Super-Resolution</div>
+            <div class="item-meta">May 2025 – Present</div>
+            <ul class="clean">
+              <li>Developed plug-in SR modules based on MeanFlow and SDXL-Turbo for one-step super-resolution.</li>
+              <li>
+                Implemented full training/evaluation pipelines and trained models on HPC clusters with 8×A100 GPUs.
+              </li>
+              <li>
+                Built a custom SR dataset from DIV2K and Flickr2K for training and reference-based retrieval.
+              </li>
+              <li>Tools: PyTorch, CUDA, HPC (LSF).</li>
+            </ul>
+          </div>
+
+          <div class="proj-item">
+            <div class="item-title">2048 Game AI Agent — CS109 Introduction to Computer Programming</div>
+            <div class="item-meta">Mar 2024 – Jun 2024</div>
+            <ul class="clean">
+              <li>Developed an AI agent capable of autonomously playing 2048 using classical algorithms.</li>
+              <li>Selected as one of the Top 5% Excellent Projects in the course.</li>
+              <li>
+                Open-sourced implementation:
+                <a href="https://github.com/airtnzhuzh/CS-109-Project" target="_blank" rel="noopener"
+                  >github.com/airtnzhuzh/CS-109-Project</a
+                >
+              </li>
+              <li>Tools: Java, JavaFX, algorithm design, Git.</li>
+            </ul>
+          </div>
+
+          <div class="proj-item">
+            <div class="item-title">Deep Learning–based Modulation Recognition</div>
+            <div class="item-meta">Sept 2024 – Dec 2024</div>
+            <ul class="clean">
+              <li>
+                Built a CNN-based system to classify QPSK, 8-PSK, and 64-QAM modulation types with 100% accuracy.
+              </li>
+              <li>Implemented full data generation and training pipelines using MATLAB and parallel computing.</li>
+              <li>Visualized results with confusion matrices and signal spectrograms.</li>
+            </ul>
+          </div>
+
+          <div class="proj-item">
+            <div class="item-title">
+              “Yunjing Zhiyu” — Intelligent Aquaculture System (China International College Students’ Innovation
+              Competition 2025)
+            </div>
+            <div class="item-meta">2025 · Guangdong Provincial Gold Award</div>
+            <ul class="clean">
+              <li>
+                Designed an intelligent aquaculture device with automatic fish feeding, algae removal, and real-time
+                water temperature monitoring.
+              </li>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <!-- Sidebar -->
+      <aside>
+        <!-- Awards -->
+        <section class="card">
+          <h2>Awards &amp; Honors / 奖项</h2>
+          <ul class="clean">
+            <li>
+              Gold Award (Guangdong Provincial Level, TOP 0.02%), “Yunjing Zhiyu” — Intelligent Aquaculture System,
+              China International College Students’ Innovation Competition 2025.
+            </li>
+            <li>6th Place, Men’s 400m, 9th SUSTech Athletics Games.</li>
+            <li>Outstanding Student, SUSTech, 2025.</li>
+            <li>Second-Class Scholarship for Academic Excellence, SUSTech, 2024–2025.</li>
+            <li>Outstanding Student, SUSTech, 2024.</li>
+            <li>Third-Class Scholarship for Academic Excellence, SUSTech, 2023–2024.</li>
+          </ul>
+        </section>
+
+        <!-- Skills -->
+        <section class="card">
+          <h2>Skills / 技能</h2>
+          <div class="skill-group">
+            <div class="item-title">Programming</div>
+            <div class="badge-row">
+              <span class="badge">Python</span>
+              <span class="badge">Java</span>
+              <span class="badge">C</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="item-title">ML &amp; Frameworks</div>
+            <div class="badge-row">
+              <span class="badge">PyTorch</span>
+              <span class="badge">Hugging Face Diffusers</span>
+              <span class="badge">Stable Diffusion</span>
+              <span class="badge">FLUX</span>
+              <span class="badge">DiT</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="item-title">Tools &amp; Systems</div>
+            <div class="badge-row">
+              <span class="badge">CUDA</span>
+              <span class="badge">HPC (LSF)</span>
+              <span class="badge">Linux</span>
+              <span class="badge">Git</span>
+              <span class="badge">OpenCV</span>
+              <span class="badge">NumPy</span>
+              <span class="badge">Matplotlib</span>
+              <span class="badge">LaTeX</span>
+              <span class="badge">STM32</span>
+              <span class="badge">Embedded Systems</span>
+              <span class="badge">Android Dev</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="item-title">Languages</div>
+            <div class="badge-row">
+              <span class="badge">Chinese (native)</span>
+              <span class="badge">English (IELTS 6.5)</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="card">
+          <h2>Contact / 联系方式</h2>
+          <div class="item-meta">
+            Email: <a href="mailto:12312326@mail.sustech.edu.cn">12312326@mail.sustech.edu.cn</a><br />
+            Phone (China): +86 150 0404 5391
+          </div>
+          <div style="font-size: 13px; color: var(--text-sub); margin-top: 10px;">
+            欢迎就科研合作、实习或进一步学习机会联系我。
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <footer>
+      &copy; <span id="year"></span> Zhihan Zhu. Last updated manually.
+    </footer>
+  </div>
+
+  <script>
+    // 自动显示当前年份
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
