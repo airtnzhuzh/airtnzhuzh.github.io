@@ -4,520 +4,415 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zhihan Zhu | Homepage</title>
-    <!-- 引入 Google Fonts 字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    
     <style>
         /* --- 核心变量与基础设置 --- */
         :root {
-            --primary-color: #2563eb; /* 学术蓝 */
-            --text-main: #1e293b;
-            --text-secondary: #64748b;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --border-color: #e2e8f0;
+            --primary-link: #0056b3; /* 经典学术蓝 */
+            --text-main: #222222;
+            --text-muted: #555555;
+            --bg-color: #ffffff;
+            --border-color: #dddddd;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            /* 正文使用干净的无衬线字体，提高阅读性 */
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.7;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
+            font-size: 16px;
         }
 
-        a { color: var(--primary-color); text-decoration: none; transition: color 0.2s; }
-        a:hover { color: #1d4ed8; text-decoration: underline; }
+        /* 标题使用经典的衬线字体，增加学术庄重感 */
+        h1, h2, h3 {
+            font-family: "Georgia", "Times New Roman", serif;
+            color: #111;
+            font-weight: normal;
+        }
 
-        /* --- 布局容器 --- */
+        h1 { font-size: 2.2rem; margin: 0 0 10px 0; font-weight: bold; }
+        h2 { 
+            font-size: 1.5rem; 
+            border-bottom: 2px solid #222; /* 沉稳的底边框替代左边框 */
+            padding-bottom: 6px; 
+            margin-top: 2.5rem; 
+            margin-bottom: 1.5rem; 
+        }
+        h3 { font-size: 1.15rem; margin: 0 0 5px 0; font-weight: bold; }
+
+        a { color: var(--primary-link); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
+            max-width: 860px;
+            margin: 50px auto;
             padding: 0 24px;
         }
 
-        /* --- 语言切换按钮样式 --- */
-        .lang-switch-container {
-            position: absolute;
-            top: 20px;
-            right: 24px;
-            z-index: 100;
-        }
-
-        .lang-btn {
-            background: white;
-            border: 1px solid var(--border-color);
-            padding: 6px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
+        /* --- 语言切换 --- */
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 20px;
             font-size: 0.9rem;
-            color: var(--text-main);
+        }
+        .lang-switch a {
+            cursor: pointer;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 4px;
             transition: all 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .lang-switch a:hover {
+            color: var(--primary-link);
+            border-color: var(--primary-link);
+            text-decoration: none;
         }
 
-        .lang-btn:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        /* --- 语言显示逻辑 --- */
-        /* 默认状态：显示英文，隐藏中文 */
         .lang-cn { display: none; }
-        
-        /* 中文模式：隐藏英文，显示中文 */
         body.zh-mode .lang-en { display: none; }
-        body.zh-mode .lang-cn { display: inline; } /* 默认为 inline，块级元素会被各自的 display 覆盖 */
-        
-        /* 特殊块级元素的处理 */
+        body.zh-mode .lang-cn { display: inline; }
         body.zh-mode div.lang-cn, 
         body.zh-mode p.lang-cn, 
         body.zh-mode h1.lang-cn, 
-        body.zh-mode h2.lang-cn { 
-            display: block; 
-        }
+        body.zh-mode h2.lang-cn { display: block; }
 
-        /* --- 顶部导航与Hero区域 --- */
-        header {
-            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
-            padding-top: 80px;
-            padding-bottom: 60px;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 60px;
-            position: relative; /* 为绝对定位的按钮提供锚点 */
-        }
-
-        .hero-flex {
+        /* --- Header / Bio --- */
+        .header-container {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: flex-start;
             gap: 40px;
+            margin-bottom: 3rem;
         }
 
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin: 0 0 16px 0;
-            color: #0f172a;
+        .bio-text {
+            flex: 1;
         }
 
-        .hero-text p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 24px;
-        }
-
-        .hero-links a {
-            margin-right: 20px;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        .hero-avatar {
-            position: relative;
-            flex-shrink: 0;
-        }
-        
-        .avatar-placeholder {
-            width: 220px;
-            height: 220px;
-            background-color: #e2e8f0;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #94a3b8;
-            font-weight: bold;
-            border: 4px solid white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-        
-        .avatar-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* --- 通用板块样式 --- */
-        section { margin-bottom: 80px; }
-
-        h2 {
-            font-size: 1.5rem;
-            border-left: 4px solid var(--primary-color);
-            padding-left: 16px;
-            margin-bottom: 32px;
-            color: #0f172a;
-        }
-
-        /* --- 论文卡片 --- */
-        .paper-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 30px;
-            display: flex;
-            gap: 30px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .paper-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-        }
-
-        .paper-img-box {
-            width: 240px;
-            flex-shrink: 0;
-            height: 160px;
-            background-color: #f1f5f9;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #cbd5e1;
-            font-size: 0.9rem;
-            text-align: center;
-            border: 2px dashed #e2e8f0;
-            overflow: hidden;
-        }
-        
-        .paper-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block; 
-        }
-
-        .paper-content { flex: 1; }
-        
-        .paper-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin: 0 0 8px 0;
-            display: block;
-            text-decoration: none;
-        }
-        
-        .paper-authors { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 8px; }
-        .paper-venue { font-style: italic; color: #0f172a; font-weight: 500; margin-bottom: 12px; font-size: 0.9rem; }
-        .paper-abstract { font-size: 0.95rem; color: #475569; margin-bottom: 16px; }
-        
-        .btn-group a {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 700;
-            margin-right: 16px;
-        }
-
-        /* --- Info Grid --- */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-        
-        .list-item {
+        .bio-text p {
             margin-bottom: 12px;
-            padding-left: 20px;
-            position: relative;
+            color: #333;
         }
-        
-        .list-item::before {
-            content: "•";
-            color: var(--primary-color);
+
+        .contact-info {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .links {
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+        .links a {
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .avatar-container {
+            flex-shrink: 0;
+            width: 220px;
+        }
+        .avatar-container img {
+            width: 100%;
+            border-radius: 4px; /* 学术主页更推荐微倒角的矩形或直角，而非正圆 */
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        /* --- Lists --- */
+        ul.dash-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul.dash-list li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 8px;
+        }
+        ul.dash-list li::before {
+            content: "–";
             position: absolute;
             left: 0;
-            font-weight: bold;
+            color: var(--text-muted);
+        }
+        .date-right {
+            float: right;
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
-        .date-badge {
-            background: #eff6ff;
-            color: var(--primary-color);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-right: 8px;
+        /* --- Publications --- */
+        .pub-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 2rem;
+            align-items: flex-start;
         }
-
-        /* --- Tags --- */
-        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-        .tag {
-            background: #f1f5f9;
-            color: #475569;
-            padding: 6px 12px;
-            border-radius: 20px;
+        .pub-img {
+            width: 200px;
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
+            padding: 4px; /* 类似真实相框的边距 */
+            background: #fff;
+        }
+        .pub-img img {
+            width: 100%;
+            display: block;
+        }
+        .pub-info {
+            flex: 1;
+        }
+        .pub-authors {
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .pub-venue {
+            font-style: italic;
+            color: #111;
+            margin-bottom: 6px;
+        }
+        .pub-abstract {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .pub-links a {
             font-size: 0.85rem;
-            font-weight: 500;
+            color: var(--primary-link);
+            margin-right: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .pub-links a::before { content: "["; color: var(--text-muted); }
+        .pub-links a::after { content: "]"; color: var(--text-muted); }
+        .pub-links a:hover::before, .pub-links a:hover::after { text-decoration: none; display: inline-block;}
+
+        /* --- Skills / Tags --- */
+        .skills-content {
+            line-height: 1.8;
+            color: #333;
+        }
+        .skills-category {
+            font-weight: bold;
+            color: #111;
         }
 
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- 响应式 --- */
         @media (max-width: 768px) {
-            .hero-flex { flex-direction: column-reverse; text-align: center; }
-            .paper-card { flex-direction: column; }
-            .paper-img-box { width: 100%; height: 200px; }
-            .info-grid { grid-template-columns: 1fr; }
-            h2 { border-left: none; border-bottom: 3px solid var(--primary-color); padding-left: 0; padding-bottom: 8px; display: inline-block;}
-            header { padding-top: 60px; padding-bottom: 40px;}
-            .hero-text p { margin: 0 auto 24px auto; }
-            .lang-switch-container { top: 15px; right: 15px; }
+            .header-container { flex-direction: column-reverse; }
+            .avatar-container { width: 180px; margin: 0 auto 20px auto; }
+            .pub-item { flex-direction: column; gap: 15px; }
+            .pub-img { width: 100%; max-width: 300px; margin: 0 auto; }
+            .date-right { float: none; display: block; font-size: 0.85rem; margin-top: 2px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
-    <header>
-        <div class="lang-switch-container">
-            <button class="lang-btn" onclick="toggleLanguage()">中文 / EN</button>
-        </div>
-        <div class="container">
-            <div class="hero-flex">
-                <div class="hero-text">
-                    <!-- 姓名切换 -->
-                    <h1>
-                        <span class="lang-en">Zhihan Zhu</span>
-                        <span class="lang-cn">朱旨函</span>
-                    </h1>
-                    <p>
-                        <span class="lang-en">Undergraduate Student @ SUSTech (EEE Department)</span>
-                        <span class="lang-cn">南方科技大学（SUSTech）电子系 本科生</span>
-                        <br>
-                        Email: 12312326 [at] mail.sustech.edu.cn
-                    </p>
-                    
-                    <!-- English Intro -->
-                    <p class="lang-en">
-                        I am a third-year undergraduate at <a href="https://nkdailab.github.io/">the Artificial Intelligence Lab</a> of <a href="https://eee.sustech.edu.cn/">Southern University of Science and Technology</a>, supervised by <a href="https://nkdailab.github.io/author/%E4%BD%95%E5%BF%97%E6%B5%B7/">Professor Zhihai He</a> (IEEE Fellow). My research focuses on <strong>Generative AI</strong>, <strong>Diffusion Models</strong>, and <strong>Flow Models</strong>. I am currently exploring video understanding and memory, and I am also interested in <strong>Agentic RL</strong>.
-                    </p>
-                    
-                    <!-- Chinese Intro (Names & Technical Terms kept in English) -->
-                    <p class="lang-cn">
-                        我是<a href="https://nkdailab.github.io/">人工智能实验室</a>的一名大三本科生，就读于<a href="https://eee.sustech.edu.cn/">南方科技大学</a>，导师为 <a href="https://nkdailab.github.io/author/%E4%BD%95%E5%BF%97%E6%B5%B7/">何志海教授</a>（IEEE Fellow）。我的研究方向聚焦于 <strong>Generative AI</strong>、<strong>Diffusion Models</strong> 与 <strong>Flow Models</strong>。目前我正在探索视频理解与记忆，同时也对 <strong>Agentic RL</strong> 感兴趣。
-                    </p>
-
-                    <div class="hero-links">
-                        <a href="https://github.com/airtnzhuzh" target="_blank">GitHub</a>
-                        <a href="https://scholar.google.com/citations?user=cYRzGS0AAAAJ">Google Scholar</a>
-                        <a href="assets/cv.pdf">
-                            <span class="lang-en">Curriculum Vitae</span>
-                            <span class="lang-cn">个人简历 (CV)</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-avatar">
-                    <div class="avatar-placeholder">
-                        <!-- ⚠️ 请确保这里是你的图片路径 -->
-                        <img src="images/me.png" alt="Zhihan Zhu" style="display:block; width:100%; height:100%; object-fit:cover;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <div class="container">
         
-        <!-- NEWS & EDUCATION GRID -->
-        <section class="info-grid">
-            <div>
-                <h2>
-                    <span class="lang-en">Education</span>
-                    <span class="lang-cn">教育经历</span>
-                </h2>
-                <div class="list-item">
-                    <strong>
-                        <span class="lang-en">Southern University of Science and Technology (SUSTech)</span>
-                        <span class="lang-cn">南方科技大学 (SUSTech)</span>
-                    </strong><br>
-                    <span class="lang-en" style="font-size: 0.9rem; color: #666;">B.S. in Electronic and Electrical Engineering (Expected June 2027)</span>
-                    <span class="lang-cn" style="font-size: 0.9rem; color: #666;">电子与电气工程系 工学学士（预计 2027 年 6 月毕业）</span><br>
-                    <div style="margin-top:5px; font-size: 0.85rem;">
-                        <span class="tag">GPA: 3.86/4.0</span>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <h2>
-                    <span class="lang-en">News & Awards</span>
-                    <span class="lang-cn">新闻与奖项</span>
-                </h2>
-                <div class="list-item">
-                    <span class="date-badge">2025</span>
-                    <span class="lang-en"><strong>Gold Award</strong>, China International College Students’ Innovation Competition (Guangdong Prov.)</span>
-                    <span class="lang-cn"><strong>金奖</strong>，中国国际大学生创新大赛（广东赛区）</span>
-                </div>
-                <div class="list-item">
-                    <span class="date-badge">2025</span>
-                    <span class="lang-en"><strong>Outstanding Student</strong>, SUSTech</span>
-                    <span class="lang-cn"><strong>优秀学生</strong>，南方科技大学</span>
-                </div>
-                <div class="list-item">
-                    <span class="date-badge">2025</span>
-                    <span class="lang-en"><strong>Second-Class Scholarship</strong> for Academic Excellence</span>
-                    <span class="lang-cn"><strong>二等奖学金</strong>（学业优秀奖）</span>
-                </div>
-            </div>
-        </section>
+        <div class="lang-switch">
+            <a onclick="toggleLanguage()" id="langBtn">中文 / English</a>
+        </div>
 
-        <!-- PUBLICATIONS SECTION -->
+        <header class="header-container">
+            <div class="bio-text">
+                <h1>
+                    <span class="lang-en">Zhihan Zhu</span>
+                    <span class="lang-cn">朱旨函 (Zhihan Zhu)</span>
+                </h1>
+                
+                <div class="contact-info">
+                    Undergraduate Student<br>
+                    <a href="https://eee.sustech.edu.cn/">Dept. of Electronic and Electrical Engineering</a><br>
+                    <a href="https://www.sustech.edu.cn/">Southern University of Science and Technology (SUSTech)</a><br>
+                    Email: 12312326 [at] mail.sustech.edu.cn
+                </div>
+
+                <p class="lang-en">
+                    I am a third-year undergraduate at the <a href="https://nkdailab.github.io/">Artificial Intelligence Lab</a> of SUSTech, advised by <a href="https://nkdailab.github.io/author/%E4%BD%95%E5%BF%97%E6%B5%B7/">Prof. Zhihai He</a> (IEEE Fellow). My research primarily focuses on <strong>Generative AI</strong>, <strong>Diffusion Models</strong>, and <strong>Flow Models</strong>. I am currently exploring video understanding and memory, and I also maintain a keen interest in Agentic RL.
+                </p>
+                <p class="lang-cn">
+                    我是<a href="https://nkdailab.github.io/">南方科技大学人工智能实验室</a>的一名大三本科生，导师为 <a href="https://nkdailab.github.io/author/%E4%BD%95%E5%BF%97%E6%B5%B7/">何志海教授</a>（IEEE Fellow）。我的研究方向聚焦于 <strong>Generative AI</strong>、<strong>Diffusion Models</strong> 与 <strong>Flow Models</strong>。目前我正在探索视频理解与记忆，同时也对 Agentic RL 充满兴趣。
+                </p>
+
+                <div class="links">
+                    <a href="assets/cv.pdf">[ Curriculum Vitae ]</a>
+                    <a href="https://scholar.google.com/citations?user=cYRzGS0AAAAJ" target="_blank">[ Google Scholar ]</a>
+                    <a href="https://github.com/airtnzhuzh" target="_blank">[ GitHub ]</a>
+                </div>
+            </div>
+
+            <div class="avatar-container">
+                <img src="images/me.png" alt="Zhihan Zhu">
+            </div>
+        </header>
+
         <section>
             <h2>
-                <span class="lang-en">Papers</span>
-                <span class="lang-cn">学术论文</span>
+                <span class="lang-en">Education</span>
+                <span class="lang-cn">教育经历</span>
             </h2>
-            
-            <!-- Paper 0 -->
-            <div class="paper-card">
-                <div class="paper-img-box">
-                    <img src="images/paper3.png" alt="Latent Bias Alignment" style="display:block; width:100%; height:100%; object-fit:cover;">
+            <ul class="dash-list">
+                <li>
+                    <span class="date-right">Sept. 2023 – Expected June 2027</span>
+                    <strong>Southern University of Science and Technology (SUSTech)</strong><br>
+                    <span class="lang-en">B.S. in Electronic and Electrical Engineering</span>
+                    <span class="lang-cn">电子与电气工程系 工学学士</span><br>
+                    <em>GPA: 3.86/4.0</em>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>
+                <span class="lang-en">Selected Publications</span>
+                <span class="lang-cn">代表性论文</span>
+            </h2>
+
+            <div class="pub-item">
+                <div class="pub-img">
+                    <img src="images/paper3.png" alt="Latent Bias Alignment Thumbnail">
                 </div>
-                <div class="paper-content">
-                    <div class="paper-title">Latent Bias Alignment for High-Fidelity Diffusion Inversion in Real-World Image Reconstruction and Manipulation</div>
-                    <div class="paper-authors">
+                <div class="pub-info">
+                    <h3>Latent Bias Alignment for High-Fidelity Diffusion Inversion in Real-World Image Reconstruction and Manipulation</h3>
+                    <div class="pub-authors">
                         Weiming Chen, Qifan Liu, Siyi Liu, Yijia Wang, <strong>Zhihan Zhu</strong>, Zhihai He
                     </div>
-                    <div class="paper-venue">Under Review · IEEE Transactions on Circuits and Systems for Video Technology, 2026</div>
-                    <p class="paper-abstract lang-en">
-                        Under review.
-                    </p>
-                    <p class="paper-abstract lang-cn">
-                        审稿中。
-                    </p>
+                    <div class="pub-venue">
+                        Under Review · IEEE Transactions on Circuits and Systems for Video Technology, 2026
+                    </div>
+                    <div class="pub-links">
+                        <a href="#">PDF (Soon)</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Paper 1 -->
-            <div class="paper-card">
-                <div class="paper-img-box">
-                    <img src="images/paper1.png" alt="Rectified Flow Inversion" style="display:block; width:100%; height:100%; object-fit:cover;">
+            <div class="pub-item">
+                <div class="pub-img">
+                    <img src="images/paper1.png" alt="Rectified Flow Inversion Thumbnail">
                 </div>
-                <div class="paper-content">
-                    <!-- Title Kept in English -->
-                    <a href="https://doi.org/10.48550/arXiv.2509.12888" class="paper-title">Runge-Kutta Approximation and Decoupled Attention for Rectified Flow Inversion and Semantic Editing</a>
-                    <div class="paper-authors">
+                <div class="pub-info">
+                    <h3><a href="https://doi.org/10.48550/arXiv.2509.12888">Runge-Kutta Approximation and Decoupled Attention for Rectified Flow Inversion and Semantic Editing</a></h3>
+                    <div class="pub-authors">
                         Weiming Chen, <strong>Zhihan Zhu</strong>, Yijia Wang, Zhihai He
                     </div>
-                    <div class="paper-venue">arXiv:2509.12888 (Sept 2025)</div>
-                    
-                    <!-- English Abstract -->
-                    <p class="paper-abstract lang-en">
-                        Proposed a high-order inversion method for rectified flow models using a Runge–Kutta solver, enabling state-of-the-art fidelity and precise semantic control via Decoupled Diffusion Transformer Attention (DDTA).
-                    </p>
-                    <!-- Chinese Abstract -->
-                    <p class="paper-abstract lang-cn">
-                        提出了一种基于 Runge–Kutta 求解器的 Rectified Flow 模型高阶反演（Inversion）方法。通过引入解耦扩散 Transformer 注意力机制（DDTA），实现了目前最优的重建保真度与精确的语义控制。
-                    </p>
-
-                    <div class="btn-group">
-                        <a href="https://doi.org/10.48550/arXiv.2509.12888">
-                            <span class="lang-en">Paper</span>
-                            <span class="lang-cn">论文</span>
-                        </a>
-                        <a href="https://github.com/wmchen/RKSovler_DDTA">
-                            <span class="lang-en">Code</span>
-                            <span class="lang-cn">代码</span>
-                        </a>
+                    <div class="pub-venue">
+                        arXiv preprint arXiv:2509.12888, 2025
+                    </div>
+                    <div class="pub-abstract lang-en">
+                        We propose a high-order inversion method for rectified flow models using a Runge–Kutta solver, enabling state-of-the-art fidelity and precise semantic control via Decoupled Diffusion Transformer Attention (DDTA).
+                    </div>
+                    <div class="pub-abstract lang-cn">
+                        提出了一种基于 Runge–Kutta 求解器的 Rectified Flow 模型高阶反演方法。通过引入解耦扩散 Transformer 注意力机制（DDTA），实现了极高的重建保真度与精确的语义控制。
+                    </div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.48550/arXiv.2509.12888">Paper</a>
+                        <a href="https://github.com/wmchen/RKSovler_DDTA">Code</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Paper 2 -->
-            <div class="paper-card">
-                <div class="paper-img-box">
-                    <img src="images/paper2.png" alt="Generative Semantic Coding" style="display:block; width:100%; height:100%; object-fit:cover;">
+            <div class="pub-item">
+                <div class="pub-img">
+                    <img src="images/paper2.png" alt="Generative Semantic Coding Thumbnail">
                 </div>
-                <div class="paper-content">
-                    <!-- Title Kept in English -->
-                    <a href="https://doi.org/10.48550/arXiv.2510.27324" class="paper-title">Generative Semantic Coding for Ultra-Low Bitrate Visual Communication</a>
-                    <div class="paper-authors">
+                <div class="pub-info">
+                    <h3><a href="https://doi.org/10.48550/arXiv.2510.27324">Generative Semantic Coding for Ultra-Low Bitrate Visual Communication</a></h3>
+                    <div class="pub-authors">
                         Weiming Chen, Yijia Wang, <strong>Zhihan Zhu</strong>, Zhihai He
                     </div>
-                    <div class="paper-venue">arXiv:2510.27324 (Oct 2025)</div>
-                    
-                    <!-- English Abstract -->
-                    <p class="paper-abstract lang-en">
-                        Developed a generative semantic coding framework integrating image generation with deep compression via rectified flow models, enabling ultra-low bitrate visual communication.
-                    </p>
-                    <!-- Chinese Abstract -->
-                    <p class="paper-abstract lang-cn">
+                    <div class="pub-venue">
+                        arXiv preprint arXiv:2510.27324, 2025
+                    </div>
+                    <div class="pub-abstract lang-en">
+                        Developed a generative semantic coding framework integrating image generation with deep compression via rectified flow models, pushing the boundaries of ultra-low bitrate communication.
+                    </div>
+                    <div class="pub-abstract lang-cn">
                         开发了一种生成式语义编码框架，通过 Rectified Flow 模型将图像生成与深度压缩相结合，实现了超低比特率的视觉通信。
-                    </p>
-
-                    <div class="btn-group">
-                        <a href="https://doi.org/10.48550/arXiv.2510.27324">
-                            <span class="lang-en">Paper</span>
-                            <span class="lang-cn">论文</span>
-                        </a>
-                        <a href="#">
-                            <span class="lang-en">Code (Coming Soon)</span>
-                            <span class="lang-cn">代码 (即将开源)</span>
-                        </a>
+                    </div>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.48550/arXiv.2510.27324">Paper</a>
+                        <a href="#">Code (Soon)</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PATENTS -->
         <section>
             <h2>
                 <span class="lang-en">Patents</span>
-                <span class="lang-cn">专利</span>
+                <span class="lang-cn">发明专利</span>
             </h2>
-            <div style="color: #475569;">
-                <div class="list-item">
+            <ul class="dash-list">
+                <li>
                     Zhihai He, Weiming Chen, <strong>Zhihan Zhu</strong>, et al. 
                     <span class="lang-en">"Image Editing Method Based on Attention Decoupling..."</span>
                     <span class="lang-cn">"基于注意力解耦的图像编辑方法..."</span>
-                    <em>CN 202511281645.1</em>.
-                </div>
-                <div class="list-item">
+                    (CN 202511281645.1)
+                </li>
+                <li>
                     Zhihai He, Weiming Chen, Yijia Wang, <strong>Zhihan Zhu</strong>. 
                     <span class="lang-en">"Template-Replacement Image Compression & Reconstruction..."</span>
                     <span class="lang-cn">"基于模板替换的图像压缩与重建方法..."</span>
-                    <em>CN 202511281423.X</em>.
-                </div>
-            </div>
+                    (CN 202511281423.X)
+                </li>
+            </ul>
         </section>
 
-        <!-- SKILLS -->
+        <section>
+            <h2>
+                <span class="lang-en">Honors & Awards</span>
+                <span class="lang-cn">荣誉与奖项</span>
+            </h2>
+            <ul class="dash-list">
+                <li>
+                    <span class="date-right">2025</span>
+                    <span class="lang-en"><strong>Gold Award</strong>, China International College Students’ Innovation Competition (Guangdong)</span>
+                    <span class="lang-cn"><strong>省金奖</strong>，中国国际大学生创新大赛（广东赛区）</span>
+                </li>
+                <li>
+                    <span class="date-right">2025</span>
+                    <span class="lang-en"><strong>Outstanding Student</strong>, SUSTech</span>
+                    <span class="lang-cn"><strong>优秀学生</strong>，南方科技大学</span>
+                </li>
+                <li>
+                    <span class="date-right">2025</span>
+                    <span class="lang-en"><strong>Second-Class Scholarship</strong> for Academic Excellence, SUSTech</span>
+                    <span class="lang-cn"><strong>二等奖学金</strong>（学业优秀），南方科技大学</span>
+                </li>
+            </ul>
+        </section>
+
         <section>
             <h2>
                 <span class="lang-en">Technical Skills</span>
-                <span class="lang-cn">技术技能</span>
+                <span class="lang-cn">技术能力</span>
             </h2>
-            <!-- Skills usually don't need translation as they are proper nouns -->
-            <div class="skill-tags">
-                <span class="tag">Python</span>
-                <span class="tag">PyTorch</span>
-                <span class="tag">Hugging Face Diffusers</span>
-                <span class="tag">CUDA</span>
-                <span class="tag">NumPy</span>
-                <span class="tag">OpenCV</span>
-                <span class="tag">LaTeX</span>
-                <span class="tag">Git</span>
-                <span class="tag">Linux</span>
-                <span class="tag">HPC (LSF, Multi-GPU Training)</span>
-                <span class="tag">Stable Diffusion</span>
-                <span class="tag">DiT</span>
-                <span class="tag">Matplotlib</span>
-                <span class="tag">FLUX</span>
-                <span class="tag">STM32</span>
-                <span class="tag">RLVR</span>
-                <span class="tag">VeRL</span>
+            <div class="skills-content">
+                <span class="skills-category">Languages & Frameworks:</span> Python, PyTorch, Hugging Face Diffusers, CUDA, NumPy, OpenCV <br>
+                <span class="skills-category">Models & Algorithms:</span> Stable Diffusion, DiT, FLUX, RLVR, VeRL <br>
+                <span class="skills-category">Tools & Systems:</span> Git, Linux, HPC (LSF, Multi-GPU Training), LaTeX, STM32
             </div>
         </section>
 
-        <footer style="text-align: center; padding: 40px 0; color: #94a3b8; font-size: 0.9rem;">
-            <p>&copy; 2025 Zhihan Zhu. Design based on modern academic aesthetics.</p>
+        <footer>
+            <p>&copy; 2025 Zhihan Zhu. Last updated: April 2026.</p>
         </footer>
 
     </div>
@@ -525,15 +420,7 @@
     <script>
         function toggleLanguage() {
             document.body.classList.toggle('zh-mode');
-            const btn = document.querySelector('.lang-btn');
-            if (document.body.classList.contains('zh-mode')) {
-                btn.innerText = "EN / 中文"; // 显示状态提示
-            } else {
-                btn.innerText = "中文 / EN";
-            }
         }
     </script>
 </body>
 </html>
-
-
